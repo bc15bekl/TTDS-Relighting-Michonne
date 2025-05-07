@@ -1,12 +1,6 @@
 --||||||||||||||||||||||||||||||||||||||| INI GENERATION - RELIGHT SEASON M |||||||||||||||||||||||||||||||||||||||
 --||||||||||||||||||||||||||||||||||||||| INI GENERATION - RELIGHT SEASON M |||||||||||||||||||||||||||||||||||||||
 --||||||||||||||||||||||||||||||||||||||| INI GENERATION - RELIGHT SEASON M |||||||||||||||||||||||||||||||||||||||
---|||||||||||||||||||||||||||||||||||||||||||||||||||||| TODO |||||||||||||||||||||||||||||||||||||||||||||||||||||
---||||||||||||||||||||||||||||||||||||||||||||||||| OpeningCredits ||||||||||||||||||||||||||||||||||||||||||||||||
---|||||||||||||||||||||||||||||||||||||||||||||||||| PreviouslyOn |||||||||||||||||||||||||||||||||||||||||||||||||
---|||||||||||||||||||||||||||||||||||||||||||||||||| NextTimeOn |||||||||||||||||||||||||||||||||||||||||||||||||||
---|||||||||||||||||||||||||||||||||||||||||||||||||||||| Menu |||||||||||||||||||||||||||||||||||||||||||||||||||||
-
 
 RELIGHT_GenerateNewINI_SeasonM = function(number_configurationVersion)
     local data = 
@@ -15,7 +9,6 @@ RELIGHT_GenerateNewINI_SeasonM = function(number_configurationVersion)
         {
             ConfigurationVersion = number_configurationVersion,
         },
-
         --||||||||||||||||||||||||||||||||||||||| EPISODE 1 |||||||||||||||||||||||||||||||||||||||
         --||||||||||||||||||||||||||||||||||||||| EPISODE 1 |||||||||||||||||||||||||||||||||||||||
         --||||||||||||||||||||||||||||||||||||||| EPISODE 1 |||||||||||||||||||||||||||||||||||||||
@@ -87,11 +80,9 @@ RELIGHT_GenerateNewINI_SeasonM = function(number_configurationVersion)
         {
             RelightSceneLuaFile = RELIGHT_LevelsFolderName .. "/RELIGHT_M101_adv_michonneZombiePets.lua",
         },
-        
         --||||||||||||||||||||||||||||||||||||||| EPISODE 2 |||||||||||||||||||||||||||||||||||||||
         --||||||||||||||||||||||||||||||||||||||| EPISODE 2 |||||||||||||||||||||||||||||||||||||||
         --||||||||||||||||||||||||||||||||||||||| EPISODE 2 |||||||||||||||||||||||||||||||||||||||
-        
         Level_M102_FlagshipExteriorEscape =
         {
             RelightSceneLuaFile = RELIGHT_LevelsFolderName .. "/RELIGHT_M102_adv_boatTownShoreLineView.lua",
@@ -128,7 +119,6 @@ RELIGHT_GenerateNewINI_SeasonM = function(number_configurationVersion)
         {
             RelightSceneLuaFile = RELIGHT_LevelsFolderName .. "/RELIGHT_M102_adv_woodsTower.lua",
         },
-
         --||||||||||||||||||||||||||||||||||||||| EPISODE 3 |||||||||||||||||||||||||||||||||||||||
         --||||||||||||||||||||||||||||||||||||||| EPISODE 3 |||||||||||||||||||||||||||||||||||||||
         --||||||||||||||||||||||||||||||||||||||| EPISODE 3 |||||||||||||||||||||||||||||||||||||||
