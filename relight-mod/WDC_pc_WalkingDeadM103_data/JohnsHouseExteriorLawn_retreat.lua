@@ -1,5 +1,3 @@
-
-
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -41,17 +39,12 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_JohnsHouseExteriorLawn
 --Here is alot of the original (decompiled) telltale lua script logic for the level.
 --We are leaving this untouched because we still want the level to function normally as intended.
 
-local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "JohnsHouseExteriorLawn_Retreat"
-	local kScene = "adv_johnsHouseExteriorLawn103"
-	local SceneInit = function()
+local SceneInit = function()
 	  Game_SetSceneDialog("env_johnsHouseExterior_retreat.dlog")
-	end
-	function JohnsHouseExteriorLawn_Retreat()
-	  Game_NewScene(kScene, kScript, SceneInit)
-	  Game_StartScene(true)
-	end
-	SceneOpen(kScene, kScript)
+end
+
+local OriginalTelltaleLevelStartLogic = function()
+	
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -109,7 +102,7 @@ function JohnsHouseExteriorLawn_Retreat()
 end
 
 if not (RelightConfigDevelopment.EditorMode == true or RelightConfigDevelopment.FreeCameraOnlyMode == true) then
-  Game_NewScene(kScene, kScript)
+  Game_NewScene(kScene, kScript, SceneInit)
   Game_StartScene(true)
 else
   SceneOpen(kScene, kScript)

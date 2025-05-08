@@ -6,6 +6,7 @@
 -- But also Telltale's original INCLUDES.
 
 require("RELIGHT_Include.lua");
+require("Menu_EndEpisode.lua")
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| TELLTALE SCENE VARIABLES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| TELLTALE SCENE VARIABLES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -16,6 +17,9 @@ require("RELIGHT_Include.lua");
 
 local kScript = "Epilogue"
 local kScene = "adv_shorelineDock"
+local kEndEpisodeScene = "ui_menuEndOfEpisode.scene"
+local kCreditsScene = "ui_credits.scene"
+local kStatsScene = IsPlatformSmallScreen() and "ui_statsBig.scene" or "ui_stats.scene"
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| CUSTOM VARIABLES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| CUSTOM VARIABLES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -39,28 +43,7 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_Epilogue;
 --Here is alot of the original (decompiled) telltale lua script logic for the level.
 --We are leaving this untouched because we still want the level to function normally as intended.
 
-local OriginalTelltaleLevelStartLogic = function()
-	require("Menu_EndEpisode.lua")
-	local kScript = "Epilogue"
-	local kScene = "adv_shorelineDock"
-	local kEndEpisodeScene = "ui_menuEndOfEpisode.scene"
-	local kCreditsScene = "ui_credits.scene"
-	local kStatsScene = IsPlatformSmallScreen() and "ui_statsBig.scene" or "ui_stats.scene"
-	function Epilogue()
-	  MenuUtils_AddScene(kEndEpisodeScene)
-	  AgentHide("cam_ui_menuEndOfEpisode", true)
-	  AgentHide("ui_menuEndOfEpisode_background", true)
-	  AgentHide("ui_menuEndOfEpisode_backgroundOverlay", true)
-	  AgentHide("ui_menuEndOfEpisode_fillForeground", true)
-	  MenuUtils_AddScene(kCreditsScene)
-	  SceneHide(kCreditsScene, true)
-	  MenuUtils_AddScene(kStatsScene)
-	  SceneHide(kStatsScene, true)
-	  Game_NewScene(kScene, kScript)
-	  Navigate_Enable(false)
-	  Game_StartScene(true)
-	end
-	function Epilogue_EndEpisode()
+function Epilogue_EndEpisode()
 	  AgentHide("cam_ui_menuEndOfEpisode", false)
 	  AgentHide("ui_menuEndOfEpisode_background", false)
 	  AgentHide("ui_menuEndOfEpisode_backgroundOverlay", false)
@@ -69,7 +52,17 @@ local OriginalTelltaleLevelStartLogic = function()
 	  Menu_EndEpisode("WalkingDeadM103")
 	  Game_EndEpisode("MenuSeasonM", "Menu_Main")
 	end
-	SceneOpen(kScene, kScript)
+
+local OriginalTelltaleLevelStartLogic = function()
+	MenuUtils_AddScene(kEndEpisodeScene)
+	AgentHide("cam_ui_menuEndOfEpisode", true)
+	AgentHide("ui_menuEndOfEpisode_background", true)
+	AgentHide("ui_menuEndOfEpisode_backgroundOverlay", true)
+	AgentHide("ui_menuEndOfEpisode_fillForeground", true)
+	MenuUtils_AddScene(kCreditsScene)
+	SceneHide(kCreditsScene, true)
+	MenuUtils_AddScene(kStatsScene)
+	SceneHide(kStatsScene, true)
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -128,6 +121,7 @@ end
 
 if not (RelightConfigDevelopment.EditorMode == true or RelightConfigDevelopment.FreeCameraOnlyMode == true) then
   Game_NewScene(kScene, kScript)
+	Navigate_Enable(false)
   Game_StartScene(true)
 else
   SceneOpen(kScene, kScript)

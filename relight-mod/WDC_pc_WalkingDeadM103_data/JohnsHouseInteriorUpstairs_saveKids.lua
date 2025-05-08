@@ -1,5 +1,3 @@
-
-
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -41,18 +39,12 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_johnsHouseInteriorUpst
 --Here is alot of the original (decompiled) telltale lua script logic for the level.
 --We are leaving this untouched because we still want the level to function normally as intended.
 
-local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "JohnsHouseInteriorUpstairs_SaveKids"
-	local kScene = "adv_johnsHouseInteriorUpstairsFire103"
-	local OnLogicReady = function()
+local OnLogicReady = function()
 	  Game_SetSceneDialog("env_johnsHouseInteriorUpstairs_saveKids.dlog")
-	end
-	function JohnsHouseInteriorUpstairs_SaveKids()
-	  Game_NewScene(kScene, kScript)
-	  Game_StartScene(true)
-	end
-	SceneOpen(kScene, kScript)
-	Callback_OnLogicReady:Add(OnLogicReady)
+end
+
+local OriginalTelltaleLevelStartLogic = function()
+	
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -115,3 +107,5 @@ if not (RelightConfigDevelopment.EditorMode == true or RelightConfigDevelopment.
 else
   SceneOpen(kScene, kScript)
 end
+
+Callback_OnLogicReady:Add(OnLogicReady)

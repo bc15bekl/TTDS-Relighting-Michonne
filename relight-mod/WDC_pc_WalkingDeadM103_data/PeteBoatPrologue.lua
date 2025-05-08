@@ -1,5 +1,3 @@
-
-
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -41,21 +39,16 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_PeteBoatPrologue;
 --Here is alot of the original (decompiled) telltale lua script logic for the level.
 --We are leaving this untouched because we still want the level to function normally as intended.
 
-local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "PeteBoatPrologue"
-	local kScene = "adv_johnsHouseGarage"
-	local Scene_Init = function()
+local Scene_Init = function()
 	  if LogicGet("1JohnsHouseInteriorMain - Flashback Over") then
-		Game_SetSceneDialog("env_johnsHouseGarage_randall.dlog")
+		  Game_SetSceneDialog("env_johnsHouseGarage_randall.dlog")
 	  else
-		Game_SetSceneDialog("env_peteBoat_103prologue")
+		  Game_SetSceneDialog("env_peteBoat_103prologue")
 	  end
-	end
-	function PeteBoatPrologue()
-	  Game_NewScene(kScene, kScript, Scene_Init)
-	  Game_StartScene(true)
-	end
-	SceneOpen(kScene, kScript)
+end
+
+local OriginalTelltaleLevelStartLogic = function()
+	
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -113,7 +106,7 @@ function PeteBoatPrologue()
 end
 
 if not (RelightConfigDevelopment.EditorMode == true or RelightConfigDevelopment.FreeCameraOnlyMode == true) then
-  Game_NewScene(kScene, kScript)
+  Game_NewScene(kScene, kScript, Scene_Init)
   Game_StartScene(true)
 else
   SceneOpen(kScene, kScript)

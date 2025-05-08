@@ -40,13 +40,7 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_JohnsHouseExteriorLawn
 --We are leaving this untouched because we still want the level to function normally as intended.
 
 local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "JohnsHouseExteriorLawn103"
-	local kScene = "adv_johnsHouseExteriorLawn103"
-	function JohnsHouseExteriorLawn103()
-	  Game_NewScene(kScene, kScript)
-	  Game_StartScene(true)
-	end
-	SceneOpen(kScene, kScript)
+
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||

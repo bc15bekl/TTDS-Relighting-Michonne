@@ -1,5 +1,3 @@
-
-
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -42,13 +40,7 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_johnsHouseInteriorUpst
 --We are leaving this untouched because we still want the level to function normally as intended.
 
 local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "JohnsHouseInteriorUpstairs103"
-	local kScene = "adv_johnsHouseInteriorUpstairs103"
-	function JohnsHouseInteriorUpstairs103()
-	  Game_NewScene(kScene, kScript)
-	  Game_StartScene(true)
-	end
-	SceneOpen(kScene, kScript)
+
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||

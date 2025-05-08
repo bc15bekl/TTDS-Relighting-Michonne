@@ -39,25 +39,19 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_JohnsHouseInteriorMain
 --Here is alot of the original (decompiled) telltale lua script logic for the level.
 --We are leaving this untouched because we still want the level to function normally as intended.
 
+local OnLogicReady = function()
+	if LogicGet("1JohnsHouseInteriorMain - Burial") then
+	Game_SetSceneDialog("env_johnsHouseInteriorMain_burial.dlog")
+	elseif LogicGet("1JohnsHouseInteriorMain - Funeral") then
+	Game_SetSceneDialog("env_johnsHouseInteriorMain_funeral.dlog")
+	else
+	Game_SetSceneDialog("env_johnsHouseInteriorMain_freewalk.dlog")
+	end
+	WaitForNextFrame()
+end
+
 local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "JohnsHouseInteriorMain103"
-	local kScene = "adv_johnsHouseInteriorMain103"
-	local OnLogicReady = function()
-	  if LogicGet("1JohnsHouseInteriorMain - Burial") then
-		Game_SetSceneDialog("env_johnsHouseInteriorMain_burial.dlog")
-	  elseif LogicGet("1JohnsHouseInteriorMain - Funeral") then
-		Game_SetSceneDialog("env_johnsHouseInteriorMain_funeral.dlog")
-	  else
-		Game_SetSceneDialog("env_johnsHouseInteriorMain_freewalk.dlog")
-	  end
-	  WaitForNextFrame()
-	end
-	function JohnsHouseInteriorMain103()
-	  Game_NewScene(kScene, kScript)
-	  Game_StartScene(true)
-	end
-	Callback_OnLogicReady:Add(OnLogicReady)
-	SceneOpen(kScene, kScript)
+
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -114,6 +108,7 @@ function JohnsHouseInteriorMain103()
   OriginalTelltaleLevelStartLogic();
 end
 
+Callback_OnLogicReady:Add(OnLogicReady)
 if not (RelightConfigDevelopment.EditorMode == true or RelightConfigDevelopment.FreeCameraOnlyMode == true) then
   Game_NewScene(kScene, kScript)
   Game_StartScene(true)

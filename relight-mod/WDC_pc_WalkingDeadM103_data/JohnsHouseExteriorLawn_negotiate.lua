@@ -1,5 +1,3 @@
-
-
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| INCLUDES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -18,6 +16,7 @@ require("RELIGHT_Include.lua");
 
 local kScript = "JohnsHouseExteriorLawn_Negotiate"
 local kScene = "adv_johnsHouseExteriorLawn103"
+local mKeepJonasDeadController, mKeepGabbyDeadController, mGateSoundThread, mGateSoundController
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| CUSTOM VARIABLES ||||||||||||||||||||||||||||||||||||||||||||||||
 --|||||||||||||||||||||||||||||||||||||||||||||||| CUSTOM VARIABLES ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -41,19 +40,16 @@ RelightConfigLevel = RelightConfigData_SeasonM.Level_M103_JohnsHouseExteriorLawn
 --Here is alot of the original (decompiled) telltale lua script logic for the level.
 --We are leaving this untouched because we still want the level to function normally as intended.
 
-local OriginalTelltaleLevelStartLogic = function()
-	local kScript = "JohnsHouseExteriorLawn_Negotiate"
-	local kScene = "adv_johnsHouseExteriorLawn103"
-	local mKeepJonasDeadController, mKeepGabbyDeadController, mGateSoundThread, mGateSoundController
-	local SceneInit = function()
-	  if LogicGet("2JohnsHouseExteriorRetreat - Begun Retreat") then
+local SceneInit = function()
+	if LogicGet("2JohnsHouseExteriorRetreat - Begun Retreat") then
 		Game_SetSceneDialog("env_johnsHouseExterior_retreat.dlog")
-	  else
+	else
 		Game_SetSceneDialog("env_johnsHouseExterior_negotiate.dlog")
-	  end
 	end
-	local JohnsHouseExteriorLawn_Negotiate_GateSoundThread = function()
-	  while true do
+end
+
+local JohnsHouseExteriorLawn_Negotiate_GateSoundThread = function()
+	 while true do
 		local theDir = ChoredMovement_GetMoveDir()
 		if theDir == 0 then
 		  if mGateSoundController and not ControllerIsPaused(mGateSoundController) then
@@ -65,29 +61,31 @@ local OriginalTelltaleLevelStartLogic = function()
 		  ControllerPlay(mGateSoundController)
 		end
 		WaitForNextFrame()
-	  end
 	end
-	function JohnsHouseExteriorLawn_Negotiate_KeepJonasDead()
-	  mKeepJonasDeadController = ChorePlay("adv_johnsHouseExterior103_jonasDead.chore", 99999)
-	  ControllerSetLooping(mKeepJonasDeadController, true)
-	  AgentHide("obj_gunGlock_jonas", true)
-	end
-	function JohnsHouseExteriorLawn_Negotiate_KeepGabbyDead()
-	  mKeepGabbyDeadController = ChorePlay("adv_johnsHouseExterior103_gabbyDead.chore", 99999)
-	  ControllerSetLooping(mKeepGabbyDeadController, true)
-	  AgentHide("obj_rifleSniperGabby", true)
-	end
-	function JohnsHouseExteriorLawn_Negotiate_GatePushSound()
-	  mGateSoundThread = ThreadStart(JohnsHouseExteriorLawn_Negotiate_GateSoundThread)
-	end
-	function JohnsHouseExteriorLawn_Negotiate_KillGatePushSoundThread()
-	  ThreadKill(mGateSoundThread)
-	end
-	function JohnsHouseExteriorLawn_Negotiate()
-	  Game_NewScene(kScene, kScript, SceneInit)
-	  Game_StartScene(true)
-	end
-	SceneOpen(kScene, kScript)
+end
+
+function JohnsHouseExteriorLawn_Negotiate_KeepJonasDead()
+	mKeepJonasDeadController = ChorePlay("adv_johnsHouseExterior103_jonasDead.chore", 99999)
+	ControllerSetLooping(mKeepJonasDeadController, true)
+	AgentHide("obj_gunGlock_jonas", true)
+end
+
+function JohnsHouseExteriorLawn_Negotiate_KeepGabbyDead()
+	mKeepGabbyDeadController = ChorePlay("adv_johnsHouseExterior103_gabbyDead.chore", 99999)
+	ControllerSetLooping(mKeepGabbyDeadController, true)
+	AgentHide("obj_rifleSniperGabby", true)
+end
+
+function JohnsHouseExteriorLawn_Negotiate_GatePushSound()
+	mGateSoundThread = ThreadStart(JohnsHouseExteriorLawn_Negotiate_GateSoundThread)
+end
+
+function JohnsHouseExteriorLawn_Negotiate_KillGatePushSoundThread()
+	ThreadKill(mGateSoundThread)
+end
+
+local OriginalTelltaleLevelStartLogic = function()
+	
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||| LEVEL START FUNCTION ||||||||||||||||||||||||||||||||||||||||||||||||
@@ -145,7 +143,7 @@ function JohnsHouseExteriorLawn_Negotiate()
 end
 
 if not (RelightConfigDevelopment.EditorMode == true or RelightConfigDevelopment.FreeCameraOnlyMode == true) then
-  Game_NewScene(kScene, kScript)
+  Game_NewScene(kScene, kScript, SceneInit)
   Game_StartScene(true)
 else
   SceneOpen(kScene, kScript)
